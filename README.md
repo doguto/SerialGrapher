@@ -3,6 +3,9 @@
 
 現状色々と機能が足りないので、cloneしてVisualStudioでDebugモードで実行してください。
 
+## Initialization
+実行前にNuGetパッケージのLiveChartsをインストール。
+
 ## How to use
 
 ## history
