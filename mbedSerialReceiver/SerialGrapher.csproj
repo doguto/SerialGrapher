@@ -60,6 +60,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GatePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GatePage.Designer.cs">
+      <DependentUpon>GatePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="SerialGrapher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GatePage.resx">
+      <DependentUpon>GatePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SerialGrapher.resx">
       <DependentUpon>SerialGrapher.cs</DependentUpon>
     </EmbeddedResource>

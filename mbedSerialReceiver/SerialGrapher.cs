@@ -12,15 +12,17 @@ namespace mbedSerialReceiver
     {
         readonly SerialPort _serialPort;
 
-        readonly int _limit = 100;
-        readonly int _portID = 24;
+        readonly int _limit = 500;
+        readonly int _portID = 16;
 
         ChartValues<float> _rpm;
         List<string> _time;
 
-        public SerialGrapher()
+        public SerialGrapher(int portID, int maxPlot)
         {
             Console.WriteLine("try to initialize Constructure.");
+            _limit = maxPlot;
+            _portID = portID;
 
             InitializeComponent();
 
@@ -36,7 +38,7 @@ namespace mbedSerialReceiver
             {
                 new LineSeries
                 {
-                    Title = "rpm [r/m]",
+                    Title = "velocity [m/s]",
                     Values = _rpm
                 }
             };
@@ -46,7 +48,7 @@ namespace mbedSerialReceiver
                 Title = "Time [s]",
                 Labels = _time
             });
-            cartesianChart.AxisY.Add(new Axis { Title = "rpm [r/m]" });
+            cartesianChart.AxisY.Add(new Axis { Title = "velocity [m/s]" });
             cartesianChart.Dock = DockStyle.Fill;
 
             this.Controls.Add(cartesianChart);
@@ -66,14 +68,13 @@ namespace mbedSerialReceiver
             }
 
             string[] data = line.Trim().Split(',');
-            Console.WriteLine("length : " + data.Length);
+            //Console.WriteLine("length : " + data.Length);
 
             if (data.Length != 2) return;
             if (!float.TryParse(data[0], out float time)) return;
             if (!float.TryParse(data[1], out float rpm)) return;
             
-            Console.WriteLine("get Serial data : " + data[0] + ", " + data[1]);
-            Console.WriteLine("try to draw graph.");
+            //Console.WriteLine("get Serial data : " + data[0] + ", " + data[1]);
 
             this.Invoke((MethodInvoker)delegate
             {
@@ -82,11 +83,6 @@ namespace mbedSerialReceiver
                 _rpm.Add(rpm);
                 _time.Add(data[0]);
             });
-        }
-
-        private void cartesianChart_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
         }
     }
 }

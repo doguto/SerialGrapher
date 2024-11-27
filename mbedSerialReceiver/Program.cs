@@ -16,7 +16,7 @@ namespace mbedSerialReceiver
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SerialGrapher());
+            Application.Run(new GatePage());
         }
     }
 }
