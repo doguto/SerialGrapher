@@ -14,7 +14,7 @@ UnbufferedSerial pc(USBTX, USBRX, 115200);
 
 char outPut[50];
 int length;
-float time;
+float x;
 float y;
 
 int main() {
@@ -23,9 +23,9 @@ int main() {
     thread_sleep_for(500);
 
     while (true) {
-        time += 0.01;
+        x += 0.01;
         y = 1/x;
-        length = snprintf(outPut, sizeof(outPut), "%f,%f\n", time, y);
+        length = snprintf(outPut, sizeof(outPut), "%f,%f\n", x, y);
         pc.write(outPut, length);
         thread_sleep_for(10ms);
     }
