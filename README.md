@@ -12,18 +12,18 @@
 ```C++
 UnbufferedSerial pc(USBTX, USBRX, 115200);
 
-char hoge[50];
+char outPut[50];
 int length;
 
 int main() {
-    int length = snprintf(outPut, sizeof(outPut), "init\n");
+    length = snprintf(outPut, sizeof(outPut), "init\n");
     pc.write(outPut, length);
     thread_sleep_for(500);
 
     while (true) {
         time += 0.01;
         y = 1/x;
-        int length = snprintf(outPut, sizeof(outPut), "%f,%f\n", time, y);
+        length = snprintf(outPut, sizeof(outPut), "%f,%f\n", time, y);
         pc.write(outPut, length);
         thread_sleep_for(10ms);
     }
