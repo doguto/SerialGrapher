@@ -14,6 +14,8 @@ UnbufferedSerial pc(USBTX, USBRX, 115200);
 
 char outPut[50];
 int length;
+float time;
+float y;
 
 int main() {
     length = snprintf(outPut, sizeof(outPut), "init\n");
