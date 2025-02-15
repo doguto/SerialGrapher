@@ -33,3 +33,8 @@ int main() {
 ```
 注意点として、最初に必ず```"init\n"```を送信するようにしてください。
 initをトリガーとしてグラフが起動されます。
+
+## Used Tech
+* C#
+* Windows Form
+* LiveCharts
