@@ -35,6 +35,9 @@ namespace mbedSerialReceiver
             this.MaxPlotLabel = new System.Windows.Forms.Label();
             this.MaxPlotButton = new System.Windows.Forms.Button();
             this.MaxPlotTextBox = new System.Windows.Forms.TextBox();
+            this.FrequencyLabel = new System.Windows.Forms.Label();
+            this.FrequencyButton = new System.Windows.Forms.Button();
+            this.FrequencyTextBox = new System.Windows.Forms.TextBox();
             this.EnterButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -95,10 +98,37 @@ namespace mbedSerialReceiver
             this.MaxPlotTextBox.TabIndex = 4;
             this.MaxPlotTextBox.TextChanged += new System.EventHandler(this.OnMaxPlotTextBoxChanged);
             // 
+            // FrequencyLabel
+            // 
+            this.FrequencyLabel.AutoSize = true;
+            this.FrequencyLabel.Location = new System.Drawing.Point(180, 240);
+            this.FrequencyLabel.Name = "FrequencyLabel";
+            this.FrequencyLabel.Size = new System.Drawing.Size(82, 18);
+            this.FrequencyLabel.TabIndex = 10;
+            this.FrequencyLabel.Text = "周波数 [Hz]";
+            // 
+            // FrequencyButton
+            // 
+            this.FrequencyButton.Location = new System.Drawing.Point(560, 240);
+            this.FrequencyButton.Name = "FrequencyButton";
+            this.FrequencyButton.Size = new System.Drawing.Size(75, 23);
+            this.FrequencyButton.TabIndex = 9;
+            this.FrequencyButton.Text = "確定";
+            this.FrequencyButton.UseVisualStyleBackColor = true;
+            this.FrequencyButton.Click += new System.EventHandler(this.OnFrequencyButtonClicked);
+            // 
+            // FrequencyTextBox
+            // 
+            this.FrequencyTextBox.Location = new System.Drawing.Point(280, 240);
+            this.FrequencyTextBox.Name = "FrequencyTextBox";
+            this.FrequencyTextBox.Size = new System.Drawing.Size(250, 25);
+            this.FrequencyTextBox.TabIndex = 8;
+            this.FrequencyTextBox.TextChanged += new System.EventHandler(this.OnFrequencyTextBoxChanged);
+            // 
             // EnterButton
             // 
             this.EnterButton.AccessibleName = "EnterButton";
-            this.EnterButton.Location = new System.Drawing.Point(400, 300);
+            this.EnterButton.Location = new System.Drawing.Point(400, 320);
             this.EnterButton.Name = "EnterButton";
             this.EnterButton.Size = new System.Drawing.Size(120, 60);
             this.EnterButton.TabIndex = 7;
@@ -110,6 +140,9 @@ namespace mbedSerialReceiver
             // 
             this.ClientSize = new System.Drawing.Size(938, 584);
             this.Controls.Add(this.EnterButton);
+            this.Controls.Add(this.FrequencyLabel);
+            this.Controls.Add(this.FrequencyButton);
+            this.Controls.Add(this.FrequencyTextBox);
             this.Controls.Add(this.MaxPlotLabel);
             this.Controls.Add(this.MaxPlotButton);
             this.Controls.Add(this.MaxPlotTextBox);
@@ -131,6 +164,9 @@ namespace mbedSerialReceiver
         private System.Windows.Forms.Label MaxPlotLabel;
         private System.Windows.Forms.Button MaxPlotButton;
         private System.Windows.Forms.TextBox MaxPlotTextBox;
+        private System.Windows.Forms.Label FrequencyLabel;
+        private System.Windows.Forms.Button FrequencyButton;
+        private System.Windows.Forms.TextBox FrequencyTextBox;
         private System.Windows.Forms.Button EnterButton;
     }
 }

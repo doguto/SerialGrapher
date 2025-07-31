@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Windows.Forms;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Collections.Concurrent;
 
 
 namespace mbedSerialReceiver
@@ -14,15 +15,19 @@ namespace mbedSerialReceiver
 
         readonly int _limit = 500;
         readonly int _portID = 16;
+        readonly int _frequency = 10; // Default frequency in Hz
 
         ChartValues<float> _rpm;
         List<string> _time;
+        System.Windows.Forms.Timer _dataTimer;
+        ConcurrentQueue<(float time, float rpm)> _dataQueue;
 
-        public SerialGrapher(int portID, int maxPlot)
+        public SerialGrapher(int portID, int maxPlot, int frequency)
         {
             Console.WriteLine("try to initialize Constructure.");
             _limit = maxPlot;
             _portID = portID;
+            _frequency = frequency;
 
             InitializeComponent();
 
@@ -33,6 +38,13 @@ namespace mbedSerialReceiver
             //cartesianChart = cartesianChart; /*new LiveCharts.WinForms.CartesianChart();*/
             _time = new List<string>();
             _rpm = new ChartValues<float>();
+            _dataQueue = new ConcurrentQueue<(float, float)>();
+
+            // Setup timer for controlled data display frequency
+            _dataTimer = new System.Windows.Forms.Timer();
+            _dataTimer.Interval = 1000 / _frequency; // Convert Hz to milliseconds
+            _dataTimer.Tick += DataTimer_Tick;
+            _dataTimer.Start();
 
             cartesianChart.Series = new SeriesCollection
             {
@@ -57,13 +69,31 @@ namespace mbedSerialReceiver
             this.Height = 600;
         }
 
+        private void DataTimer_Tick(object sender, EventArgs e)
+        {
+            if (_dataQueue.TryDequeue(out (float time, float rpm) data))
+            {
+                if (_rpm.Count >= _limit)
+                {
+                    _rpm.RemoveAt(0);
+                    _time.RemoveAt(0);
+                }
+
+                _rpm.Add(data.rpm);
+                _time.Add(data.time.ToString("F2"));
+            }
+        }
+
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string line = _serialPort.ReadLine(); // 行単位でデータを受信
             if (line == "init")
             {
-                _rpm.Clear();
-                _time.Clear();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    _rpm.Clear();
+                    _time.Clear();
+                });
                 return;
             }
 
@@ -76,13 +106,8 @@ namespace mbedSerialReceiver
             
             //Console.WriteLine("get Serial data : " + data[0] + ", " + data[1]);
 
-            this.Invoke((MethodInvoker)delegate
-            {
-                if (_rpm.Count > _limit) return;
-
-                _rpm.Add(rpm);
-                _time.Add(data[0]);
-            });
+            // Queue the data for processing at controlled frequency
+            _dataQueue.Enqueue((time, rpm));
         }
     }
 }
