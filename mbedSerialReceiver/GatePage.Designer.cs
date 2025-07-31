@@ -101,11 +101,11 @@ namespace mbedSerialReceiver
             // FrequencyLabel
             // 
             this.FrequencyLabel.AutoSize = true;
-            this.FrequencyLabel.Location = new System.Drawing.Point(180, 240);
+            this.FrequencyLabel.Location = new System.Drawing.Point(130, 240);
             this.FrequencyLabel.Name = "FrequencyLabel";
-            this.FrequencyLabel.Size = new System.Drawing.Size(82, 18);
+            this.FrequencyLabel.Size = new System.Drawing.Size(132, 18);
             this.FrequencyLabel.TabIndex = 10;
-            this.FrequencyLabel.Text = "周波数 [Hz]";
+            this.FrequencyLabel.Text = "周波数 [Hz] (1-1000)";
             // 
             // FrequencyButton
             // 

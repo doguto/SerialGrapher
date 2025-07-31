@@ -42,7 +42,9 @@ namespace mbedSerialReceiver
 
             // Setup timer for controlled data display frequency
             _dataTimer = new System.Windows.Forms.Timer();
-            _dataTimer.Interval = 1000 / _frequency; // Convert Hz to milliseconds
+            // Ensure frequency is reasonable (1-1000 Hz)
+            int safeFrequency = Math.Max(1, Math.Min(_frequency, 1000));
+            _dataTimer.Interval = 1000 / safeFrequency; // Convert Hz to milliseconds
             _dataTimer.Tick += DataTimer_Tick;
             _dataTimer.Start();
 
