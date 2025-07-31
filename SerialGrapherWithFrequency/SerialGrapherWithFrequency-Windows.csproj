@@ -1,0 +1,24 @@
+<!-- Windows Forms project file for Serial Grapher with Frequency Setting -->
+<!-- This file should be used when building in a Windows environment with Windows Forms SDK -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyTitle>Serial Grapher with Frequency Setting</AssemblyTitle>
+    <AssemblyDescription>Serial data grapher with configurable frequency setting for data acquisition control</AssemblyDescription>
+    <AssemblyCompany>SerialGrapher Project</AssemblyCompany>
+    <AssemblyProduct>SerialGrapher</AssemblyProduct>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>2.0.0.0</AssemblyFileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinForms" Version="2.0.0-rc2" />
+  </ItemGroup>
+
+</Project>
