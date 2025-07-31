@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SerialGrapherWithFrequency")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+233ef0ae81fc2af01bc430330ae52823250ea1ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6dc37d7d070c9c00059c124c73a6d1cc730482b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SerialGrapherWithFrequency")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SerialGrapherWithFrequency")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
