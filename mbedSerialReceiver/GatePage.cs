@@ -55,7 +55,7 @@ namespace mbedSerialReceiver
             string frequencyText = FrequencyTextBox.Text;
             if (frequencyText == null) return;
             if (!int.TryParse(frequencyText, out int frequency)) return;
-            if (frequency <= 0 || frequency > 1000) return; // Valid range: 1-1000 Hz
+            if (frequency <= 0) return; // Valid range: > 0
 
             _frequency = frequency;
         }
