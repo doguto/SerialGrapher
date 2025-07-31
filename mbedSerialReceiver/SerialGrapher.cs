@@ -14,19 +14,21 @@ namespace mbedSerialReceiver
 
         readonly int _limit = 500;
         readonly int _portID = 16;
+        readonly int _frequency = 9600; // Default baud rate
 
         ChartValues<float> _rpm;
         List<string> _time;
 
-        public SerialGrapher(int portID, int maxPlot)
+        public SerialGrapher(int portID, int maxPlot, int frequency)
         {
             Console.WriteLine("try to initialize Constructure.");
             _limit = maxPlot;
             _portID = portID;
+            _frequency = frequency;
 
             InitializeComponent();
 
-            _serialPort = new SerialPort("COM" + _portID, 115200); // 適切なCOMポートに変更
+            _serialPort = new SerialPort("COM" + _portID, _frequency);
             _serialPort.DataReceived += SerialPort_DataReceived;
             _serialPort.Open();
 
@@ -62,8 +64,11 @@ namespace mbedSerialReceiver
             string line = _serialPort.ReadLine(); // 行単位でデータを受信
             if (line == "init")
             {
-                _rpm.Clear();
-                _time.Clear();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    _rpm.Clear();
+                    _time.Clear();
+                });
                 return;
             }
 
@@ -78,10 +83,14 @@ namespace mbedSerialReceiver
 
             this.Invoke((MethodInvoker)delegate
             {
-                if (_rpm.Count > _limit) return;
+                if (_rpm.Count >= _limit)
+                {
+                    _rpm.RemoveAt(0);
+                    _time.RemoveAt(0);
+                }
 
                 _rpm.Add(rpm);
-                _time.Add(data[0]);
+                _time.Add(time.ToString("F2"));
             });
         }
     }

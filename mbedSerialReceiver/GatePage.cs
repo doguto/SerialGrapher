@@ -12,6 +12,7 @@ namespace mbedSerialReceiver
     {
         int _comID = -1;
         int _maxPlotAmount = -1;
+        int _frequency = -1;
 
         public GatePage()
         {
@@ -48,12 +49,29 @@ namespace mbedSerialReceiver
 
         }
 
+        private void OnFrequencyButtonClicked(object sender, EventArgs e) // Frequency button
+        {
+            Console.WriteLine("FrequencyButton clicked.");
+            string frequencyText = FrequencyTextBox.Text;
+            if (frequencyText == null) return;
+            if (!int.TryParse(frequencyText, out int frequency)) return;
+            if (frequency <= 0) return; // Valid range: > 0
+
+            _frequency = frequency;
+        }
+
+        private void OnFrequencyTextBoxChanged(object sender, EventArgs e) // Frequency text box
+        {
+
+        }
+
         private void OnEnterButtonClicked(object sender, EventArgs e) // Enter button
         {
             if (_comID <= 0) return;
             if (_maxPlotAmount <= 0) return;
+            if (_frequency <= 0) return;
 
-            SerialGrapher serialGrapher = new SerialGrapher(_comID, _maxPlotAmount);
+            SerialGrapher serialGrapher = new SerialGrapher(_comID, _maxPlotAmount, _frequency);
             this.Hide();
             serialGrapher.ShowDialog();
         }
