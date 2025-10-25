@@ -29,7 +29,7 @@ namespace mbedSerialReceiver
         /// </summary>
         private void InitializeComponent()
         {
-            this.COMTextBox = new System.Windows.Forms.TextBox();
+            this.COMComboBox = new System.Windows.Forms.ComboBox();
             this.COMButton = new System.Windows.Forms.Button();
             this.COMLabel = new System.Windows.Forms.Label();
             this.MaxPlotLabel = new System.Windows.Forms.Label();
@@ -41,16 +41,17 @@ namespace mbedSerialReceiver
             this.EnterButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // COMTextBox
+            // COMComboBox
             // 
-            this.COMTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.COMComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.COMTextBox.Location = new System.Drawing.Point(280, 80);
-            this.COMTextBox.Name = "COMTextBox";
-            this.COMTextBox.Size = new System.Drawing.Size(250, 25);
-            this.COMTextBox.TabIndex = 0;
-            this.COMTextBox.TextChanged += new System.EventHandler(this.OnMaxPlotTextBoxChanged);
+            this.COMComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.COMComboBox.Location = new System.Drawing.Point(280, 80);
+            this.COMComboBox.Name = "COMComboBox";
+            this.COMComboBox.Size = new System.Drawing.Size(250, 26);
+            this.COMComboBox.TabIndex = 0;
+            this.COMComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCOMComboBoxChanged);
             // 
             // COMButton
             // 
@@ -58,7 +59,7 @@ namespace mbedSerialReceiver
             this.COMButton.Name = "COMButton";
             this.COMButton.Size = new System.Drawing.Size(75, 23);
             this.COMButton.TabIndex = 2;
-            this.COMButton.Text = "確定";
+            this.COMButton.Text = "更新";
             this.COMButton.UseVisualStyleBackColor = true;
             this.COMButton.Click += new System.EventHandler(this.OnCOMButtonClicked);
             // 
@@ -148,7 +149,7 @@ namespace mbedSerialReceiver
             this.Controls.Add(this.MaxPlotTextBox);
             this.Controls.Add(this.COMLabel);
             this.Controls.Add(this.COMButton);
-            this.Controls.Add(this.COMTextBox);
+            this.Controls.Add(this.COMComboBox);
             this.Name = "GatePage";
             this.Load += new System.EventHandler(this.GatePage_Load);
             this.ResumeLayout(false);
@@ -158,7 +159,7 @@ namespace mbedSerialReceiver
 
         #endregion
 
-        private System.Windows.Forms.TextBox COMTextBox;
+        private System.Windows.Forms.ComboBox COMComboBox;
         private System.Windows.Forms.Button COMButton;
         private System.Windows.Forms.Label COMLabel;
         private System.Windows.Forms.Label MaxPlotLabel;

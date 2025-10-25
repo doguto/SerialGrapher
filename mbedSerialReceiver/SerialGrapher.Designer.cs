@@ -19,11 +19,6 @@
                 {
                     components.Dispose();
                 }
-                if (_dataTimer != null)
-                {
-                    _dataTimer.Stop();
-                    _dataTimer.Dispose();
-                }
                 if (_serialPort != null && _serialPort.IsOpen)
                 {
                     _serialPort.Close();
